@@ -75,6 +75,23 @@ Class PersonaModel extends Model {
          }
     }
 
+    public function existe($documento,$contra){
+        $query = $this->db->conexion()->prepare('SELECT documento FROM persona WHERE documento = :documento AND contraseña = :contra');
+        try {
+            $query->execute([
+                'documento' => $documento,
+                'contra' => $contra
+            ]);
+            if($query->rowCount()>0){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (PDOException $e) {
+            print_r('Error en la base de datos',$e);
+        }
+    }
+
     
 
 }

@@ -15,15 +15,15 @@ class Controller
 
         if (isset($_SESSION['user'])) {
 
-            if (file_exists('views/farmacia/' . $view . '.php')) {
+            if (file_exists('views/admin/' . $view . '.php')) {
 
                 foreach ($data as $key => $value) {
                     $$key = $value;
                 }
 
-                require_once 'views/farmacia/' . $view . '.php';
+                require_once 'views/admin/' . $view . '.php';
             } else {
-                header('location:' . URL . 'productos');
+                header('location:' . URL . '');
             }
         } else {
             if (file_exists('views/' . $view . '.php')) {
@@ -34,7 +34,7 @@ class Controller
 
                 require_once 'views/' . $view . '.php';
             } else {
-                header('location:' . URL . 'login');
+                header('location:' . URL . 'error');
             }
         }
     }
