@@ -1,0 +1,73 @@
+/** @format */
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.contenedor-menu {
+	width: 100%;
+	min-width: 200px;
+	display: inline-block;
+}
+
+.contenedor-menu .menu {
+	width: 100%;
+}
+
+.contenedor-menu ul {
+	list-style: none;
+}
+
+.contenedor-menu .menu li a {
+	background: #fff;
+	color: black;
+	display: block;
+	padding: 5px 10px;
+}
+
+.contenedor-menu .menu li a:hover {
+	background: #dd4b39;
+	color: #fff;
+}
+
+.contenedor-menu .menu .icono {
+	font-size: 12px;
+}
+
+.contenedor-menu .menu .icono.izquierda {
+	float: left;
+	margin-right: 10px;
+}
+
+.contenedor-menu .menu .icono.derecha {
+	float: right;
+	margin-left: 10px;
+}
+
+.contenedor-menu .menu ul {
+	display: none;
+}
+
+.contenedor-menu .menu ul li a {
+	background: rgb(163, 162, 162);
+	color: #fff;
+}
+
+.contenedor-menu .menu .activado > a {
+	background: #dd4b39;
+	color: #fff;
+}
+
+.contenedor-menu .menu ul li .loguito {
+	float: left;
+	margin-right: 10px;
+}
