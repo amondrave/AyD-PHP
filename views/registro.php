@@ -4,7 +4,7 @@
     <title><?=$titulo?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="Shortcut Icon" type="image/x-icon" href="assets/icons/logoufps.png" />
+    <link rel="Shortcut Icon" type="image/x-icon" href="<?=URL?>public/assets/icons/logoufps.png" />
     <script src="js/sweet-alert.min.js"></script>
     <link rel="stylesheet" href="<?=URL?>public/css/sweet-alert.css">
     <link rel="stylesheet" href="<?=URL?>public/css/material-design-iconic-font.min.css">
@@ -21,14 +21,14 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/main.js"></script>
 </head>
-<body class="full-cover-background" style="background-image:url(<?=URL?>public/assets/img/ufps2.png);height: 800px;">
+<body class="full-cover-background" style="background-image:url(<?=URL?>public/assets/img/ufps2.png);height: 780px;">
     <div class="form-container" style="
-    height: 720px;
-    width: 651px;
+    height: 762px;
+    width: 650px;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 20px;
-    margin-top: 40px;
+    margin-top: 75px;
     margin-bottom: 10px;
     ">
         <p class="text-center" style="margin-top: -17px;">
@@ -36,94 +36,101 @@
        </p>
        <h4 class="text-center all-tittles" style="margin-bottom: -2px;">Introduce tus datos para registrarte</h4>
        <center><h5>Para visualizar los campos de registro de estudiante, presiona en el campo estudiante, para esconderlos presiona nuevamente</h5></center>
-       <form>
+       <form action="<?=URL?>registro/insertar" method="post">
         <p>
-            <center><div>
-            <a class="btn btn-outline-light" data-toggle="collapse" href="#estudiante" role="button" aria-expanded="false" aria-controls="collapseExample">
-              estudiante
-            </a>
-            <button class="btn btn-outline-light" type="button">
-              Docente
-            </button>
-            </div></center>
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="exampleRadios1" value="profesor" checked><br>
+                        <label class="form-check-label" for="exampleRadios1">
+                          Docente
+                        </label>
+                      </div>    
+                      
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="exampleRadios2" value="estudiante" data-toggle="collapse" data-target="#estudiante" aria-expanded="false" aria-controls="collapseExample"><br>
+                        <label class="form-check-label" for="exampleRadios2">
+                          Estudiante
+                        </label>
+                      </div>
+
+                </div>
+            </div>
           </p>
         <div class="row">
             <div class="col">
 
                 <div class="group-material-login">
-                    <input type="text" class="material-login-control" required="" maxlength="70" name="nombres" id="nombres">
+                    <input type="text" class="material-login-control" required="" maxlength="70" name="nombres">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
                     <label><i class="zmdi zmdi-account"></i> &nbsp; Nombres</label>
                 </div><br>
                 <div class="group-material-login">
-                    <input type="password" class="material-login-control" required="" maxlength="70" name="codigo" id="codigo">
+                    <input type="password" class="material-login-control" required="" maxlength="70" name="codigo">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
-                    <label><i class="zmdi zmdi-lock"></i> &nbsp; Codigo docente o estudiante</label>
+                    <label><i class="zmdi zmdi-graduation-cap"></i> &nbsp; Codigo docente o estudiante</label>
                 </div><br>
                 <div class="group-material-login">
-                    <input type="text" class="material-login-control" required="" maxlength="70" name="correo" id="correo">
+                    <input type="text" class="material-login-control" required="" maxlength="70" name="correo">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
-                    <label><i class="zmdi zmdi-account"></i> &nbsp; Correo</label>
+                    <label><i class="zmdi zmdi-google"></i> &nbsp; Correo</label>
                 </div><br>
-                <select class="custom-select" id="validationTooltip04" required>
+                <select class="custom-select" id="validationTooltip04" required name="tipo_documento">
                     <option selected disabled value="">Tipo de documento</option>
-                     <?php
-                     foreach($documentos as $doc){
-                     ?>
-                     <option value="<?=$doc->getIdTipoDocumento()?>">
+                    <?php
+                    foreach ($documentos as $doc) {
+                    ?>
+                    <option value="<?=$doc->getIdTipoDocumento()?>">
                      <?=$doc->getNombre()?>
-                     </option>
-                     <?php
-                     }
-                     ?>
+                    </option>
+                    <?php
+                    }
+                    ?>
                   </select><br>
             </div>
             <div class="col">
                 
                 <div class="group-material-login">
-                    <input type="text" class="material-login-control" required="" maxlength="70" id="apellido" name="apellido">
+                    <input type="text" class="material-login-control" required="" maxlength="70" name="apellido1">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
                     <label><i class="zmdi zmdi-account"></i> &nbsp; Apellidos</label>
                 </div><br>
                 <div class="group-material-login">
-                    <input type="text" class="material-login-control" required="" maxlength="70" name="contrasena" id="contrasena">
+                    <input type="password" class="material-login-control" required="" maxlength="70" name="contra">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
                     <label><i class="zmdi zmdi-lock"></i> &nbsp; Contraseña</label>
                 </div><br>
                 <div class="collapse" id="estudiante">
                     <div class="group-material-login">
-                        <input type="text" class="material-login-control" required="" maxlength="70" id="carrera" name="carrera">
+                        <input type="text" class="material-login-control" required="" maxlength="70" name="carrera">
                         <span class="highlight-login"></span>
                         <span class="bar-login"></span>
                         <label><i class="zmdi zmdi-account"></i> &nbsp; Codigo de carrera</label>
                     </div>   
                 </div><br>
                 <div class="group-material-login">
-                    <input type="text" class="material-login-control" required="" maxlength="70" name="documento" id="documento">
+                    <input type="text" class="material-login-control" required="" maxlength="70" name="documento">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
-                    <label><i class="zmdi zmdi-account"></i> &nbsp; Documento</label>
+                    <label><i class="zmdi zmdi-account-box"></i> &nbsp; Documento</label>
                 </div><br>
-                
-            </div> <br>
-        </div>
-        <div class="row">
-           <div class="col-md-6">
-               <div class="group-material-login">
-                    <label><i class="zmdi zmdi-account"></i> &nbsp; Fecha de nacimiento</label>
-                    <input type="date" class="material-login-control" required="" name="fecha" id="fecha">
+                <div class="group-material-login">
+                    <input type="date" class="material-login-control" required maxlength="70" name="fecha_nacimiento">
                     <span class="highlight-login"></span>
                     <span class="bar-login"></span>
-                </div><br>
-           </div>
+                   -<!-- <label><i class="zmdi zmdi-calenda"></i> &nbsp; Fecha de nacimiento</label>-->
+                </div>
+            </div>  
         </div>
         <div>
-            <center><button type="button" class="botoncito btn btn-outline-light" style="padding: 0.5rem 8rem;">Registrarse</button></center>
+            <center><input type="submit" class="botoncito btn btn-outline-light" style="padding: 0.5rem 8rem;" value="Registrese"></center>
         </div>  
         </form>
     </div>

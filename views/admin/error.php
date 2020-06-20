@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?=$titulo?></title>
 </head>
 <body>
-    <h1><?=$mensaje?></h1>
-    <a href="<?=URL?>index">volver</a>
+    <h1>Error</h1>
+    <p><?=$mensaje?></p>
+    <a href="<?=URL?>login/home">Regresar</a>
 </body>
 </html>

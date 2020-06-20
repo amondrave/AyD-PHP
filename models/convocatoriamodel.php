@@ -18,10 +18,10 @@ class ConvocatoriaModel extends Model{
             
             $query->execute([
                 'fechaIni' => $convocatoria->getFechaInicio(),
-                'fecha' => getdate("Y-m-d"),
+                'fecha' => $convocatoria->getFechaInicio(),
                 'nombre' => $convocatoria->getNombre(),
-                'descr' => 'Descripción general',
-                'fecfaCie' => null,
+                'descr' => null,
+                'fechaCie' => $convocatoria->getFechaCierre(),
                 'semestre' => $convocatoria->getSemestre(),
                 'habilitadas' => 'N'
             ]);
@@ -73,12 +73,12 @@ class ConvocatoriaModel extends Model{
           $query = $this->db->conexion()->query('SELECT * FROM convocatoria');
           while ($row = $query->fetch()) {
               $con = new Convocatoria();
-              $con->setIdConvocatoria($row['idConvocatoria']);
+              $con->setIdConvocatoria($row['idconvocatoria']);
               $con->setFechaInicio($row['fecha_inicio']);
               $con->setFechaCreacion($row['fecha_creacion']);
-              $con->setNombre($row['nombre']);
+              $con->setNombre($row['nombre_convocatoria']);
               $con->setDescripcion($row['descripcion']);
-              $con->fechaCierre($row['fecha_cierre']);
+              $con->setFechaCierre($row['fecha_cierre']);
               $con->setSemestre($row['semestre']);
               array_push($convocatorias,$con);
           }

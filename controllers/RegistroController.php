@@ -1,54 +1,30 @@
 <?php
 
-require_once 'models/tipodocumentomodel.php';
 require_once 'models/personamodel.php';
 require_once 'models/estudiantemodel.php';
 require_once 'models/profesormodel.php';
 require_once 'entities/Persona.php';
 
+class RegistroController extends Controller{
 
-class IndexController extends Controller{
-
-    protected $tipoDocumentoModel;
-    protected $personaModel;
+    private $personaModel;
     private $profesorModel;
     private $estudianteModel;
-
     public function __construct(){
-        $this->personaModel = $this->model('persona');
+        parent:__construct();
+        $this->model("persona");
         $this->profesorModel = new ProfesorModel();
         $this->estudianteModel = new EstudianteModel();
     }
 
     public function actionIndex(){
-        $datos = ["titulo"=>"Inicio de sesión"];
-        $this->view('index',$datos);
-    }
-
-    public function actionRegistro(){
-        $documentos = $this->obtenerDocumentos();
-        $datos = ["titulo" => "Registrese","documentos"=>$documentos ];
+        $datos = ['titulo'=>'registrese'];
         $this->view('registro',$datos);
-    }
-
-    public function actionError(){
-        $datos = ["titlo" => 'error'];
-        $this->view('error',$datos);
-    }
-
-    public function actionAdmin(){
-        $datos = ['titulo' => 'Administrador'];
-        $this->view('login',$datos);
-    }
-
-    public function obtenerDocumentos(){
-        $this->tipoDocumentoModel = new TipoDocumentoModel();
-        return $this->tipoDocumentoModel->obtenerTodos();
     }
 
     public function actionInsertar(){
         
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+        //if($_SERVER['REQUEST_METHOD'] == "POST"){
             if(isset($_POST['tipo'],$_POST['documento'],$_POST['nombres'],$_POST['apellido1'],$_POST['correo'],$_POST['fecha_nacimiento'],$_POST['tipo_documento'],$_POST['contra'],$_POST['codigo'])){
                 
                     $documento = $_POST['documento'];
@@ -73,7 +49,6 @@ class IndexController extends Controller{
                             $estudiante = new Estudiante($documento,$codigo,$carrera);
                             $this->estudianteModel->insertar($estudiante);
                         }
-                        $this->actionIndex();
                     }else{
                           echo("<p>No se pudo insertar chamo</p>");
                           $datos = ["mensaje" => "Error a ingresar"];
@@ -82,12 +57,14 @@ class IndexController extends Controller{
             }else{
                 echo("<p>No sirve</p>");
             }
-        }else{
-            echo("<p>No esta entrando</p>");
-        }
+        
     }
+
+    
 
 
 }
+
+
 
 ?>

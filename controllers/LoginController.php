@@ -2,6 +2,7 @@
 
 require_once 'models/personamodel.php';
 require_once 'models/administradormodel.php';
+require_once 'models/convocatoriamodel.php';
 
 class LoginController extends Controller{
 
@@ -12,7 +13,7 @@ class LoginController extends Controller{
     }
 
     public function actionIndex(){
-        $datos = ['titulo'=>"es la condicion"];
+        $datos = ['titulo'=>"Administrador"];
         $this->view('login',$datos);
     }
 
@@ -41,9 +42,22 @@ class LoginController extends Controller{
 
 
     public function actionHome(){
-        $this->view('home',[]);
+        $convocatorias = $this->obtenerConvocatorias();
+        $datos = ['titulo' => 'inicio','listaConvo'=>$convocatorias];
+        $this->view('home',$datos);
     }
 
+    public function actionCerrar(){
+        session_start();
+        session_unset();
+        session_destroy();
+        header('location: ' . URL . 'admin');
+    }
+
+    public function obtenerConvocatorias(){
+        $convocatoria = new ConvocatoriaModel();
+        return $convocatoria->obtenerTodos();
+    }
 
 }
 

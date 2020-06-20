@@ -30,14 +30,14 @@ Class PersonaModel extends Model {
                 'ape1' => $persona->getApellido1(),
                 'ape2' => $persona->getApellido2(),
                 'email'=> $persona->getCorreoElectronico(),
-                'fecha'=> $persona->getFechaNacimiento(),
+                'fecha'=> $persona->getFechaNaciento(),
                 'tipo' => $persona->getTipoDocumento(),
                 'contra' => $persona->getContrasena()
             ]);
             return true;
         } catch (PDOException $e) {
             //Si la consulta sale mal
-
+            print_r("Error en la bd",$e);
             return false;
         }
     }
