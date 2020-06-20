@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="<?=URL?>public/css/login.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="<?=URL?>public/js/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="<?=URL?>public/js/modernizr.js"></script>
+    <script src="<?=URL?>public/js/bootstrap.min.js"></script>
+    <script src="<?=URL?>public/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="<?=URL?>public/js/main.js"></script>
 </head>
 <body class="full-cover-background" style="background-image:url(<?=URL?>public/assets/img/ufps2.png);height: 780px;">
     <div class="form-container" style="
@@ -36,7 +36,7 @@
        </p>
        <h4 class="text-center all-tittles" style="margin-bottom: -2px;">Introduce tus datos para registrarte</h4>
        <center><h5>Para visualizar los campos de registro de estudiante, presiona en el campo estudiante, para esconderlos presiona nuevamente</h5></center>
-       <form action="<?=URL?>registro/insertar" method="post">
+       <form action="<?=URL?>registro/impri" method="post">
         <p>
             <div class="row">
                 <div class="col">
@@ -80,7 +80,7 @@
                     <span class="bar-login"></span>
                     <label><i class="zmdi zmdi-google"></i> &nbsp; Correo</label>
                 </div><br>
-                <select class="custom-select" id="validationTooltip04" required name="tipo_documento">
+                <select class="custom-select" id="validationTooltip04" required="" name="tipo_documento">
                     <option selected disabled value="">Tipo de documento</option>
                     <?php
                     foreach ($documentos as $doc) {

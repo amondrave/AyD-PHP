@@ -8,7 +8,7 @@
   private $anio;
 
 
-    public function __construct($idSemestre = null,$periodo = null,$anio = nul){
+    public function __construct($idSemestre = null,$periodo = null,$anio = null){
 		$this->idSemestre = $idSemestre;
 		$this->periodo = $periodo;
 		$this->anio = $anio;

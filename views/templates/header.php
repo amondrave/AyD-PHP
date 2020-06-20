@@ -50,7 +50,7 @@
                                 <li><a href="criterioseva.html"><i class="loguito zmdi zmdi-file-plus zmdi-hc-fw"></i>Asignar criterios de evaluación</a></li>
                             </ul>
                         </li>
-                        <li ><a href="Proyectos.html"><i class = "icono izquierda zmdi zmdi-collection-folder-image"> </i>Proyectos</a>
+                        <li ><a href="<?=URL?>convocatoria/proyectos"><i class = "icono izquierda zmdi zmdi-collection-folder-image"> </i>Proyectos</a>
                         </li>
                     </ul>
                 </div>

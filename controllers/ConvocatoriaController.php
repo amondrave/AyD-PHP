@@ -52,6 +52,19 @@ class ConvocatoriaController extends Controller{
         }
     }
 
+    public function actionProyectos(){
+        $lista = $this->obtenerConvocatorias();
+        $datos = ['titulo' => 'Proyectos registrados en el sistema',
+                  'lista' =>$lista,
+                  'mensaje' => 'Listado de convocatorias existentes'
+                 ];
+        $this->view('proyectos',$datos);
+    }
+
+    public function obtenerConvocatorias(){
+        return $this->convocatoriaModel->obtenerTodos();
+    }
+
 }
 
 

@@ -8,8 +8,10 @@ require_once 'views/templates/header.php';
     </div>
 
 <!--Tabla de la convocatoria-->
-<table class="table table-dark">
-  <thead>
+
+<div class="table-responsive">
+<table class="table  text-center table-bordered">
+  <thead class="text-primary">
     <tr>
       <th scope="col">id</th>
       <th scope="col">nombre</th>
@@ -34,6 +36,8 @@ require_once 'views/templates/header.php';
      ?>
   </tbody>
 </table>
+</div>
+
 <!--Cierre de la tabla-->
 </div>
 <a href="<?=URL?>login/cerrar">Salir</a>

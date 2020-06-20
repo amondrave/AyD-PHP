@@ -60,7 +60,9 @@ class RegistroController extends Controller{
         
     }
 
-    
+    public function actionImpri(){
+        echo("<p>Hola</p>");
+    }
 
 
 }
