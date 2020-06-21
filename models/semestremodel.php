@@ -40,6 +40,29 @@ class SemestreModel extends Model{
             return [];
         }
     }
+
+    public function buscarPorId($id){
+
+        $query = $this->db->conexion()->prepare('SELECT * FROM semestre WHERE idsemestre = :id');
+        try {
+            $query->execute([
+                'id' => $id
+            ]);
+            $semestre = new Semestre();
+
+            while ($row = $query->fetch()) {
+                $semestre->setIdSemestre($row['idsemestre']);
+                $semestre->setAnio($row['anio']);
+                $semestre->setPeriodo($row['periodo']);
+            }
+            return $semestre;
+        } catch (PDOException $e) {
+            print_r("Error en la base de datos",$e);
+            return null;
+        }
+
+    }
+
 }
 
 

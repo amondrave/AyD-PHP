@@ -20,7 +20,7 @@ class EstudianteModel extends Model{
         //ejecuto query para insertar a la base de datos
         try {
               $query->execute([
-                'documento' => $estudiante->getDocumeto(),
+                'documento' => $estudiante->getDocumento(),
                 'codigo' => $estudiante->getCodigoEstudiante(),
                 'carrera' => $estudiante->getCodigoCarrera()
               ]);

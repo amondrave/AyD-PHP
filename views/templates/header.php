@@ -67,7 +67,7 @@
                     <span class="all-tittles">Admin Name</span>
                 </li>
                 <li  class="tooltips-general exit-system-button" data-href="<?=URL?>login/cerrar" data-placement="bottom" title="Salir del sistema">
-                    <i class="zmdi zmdi-power"></i>
+                    <i class="zmdi zmdi-power"><a href="<?=URL?>login/cerrar"></a></i>
                 </li>
                 <li  class="tooltips-general btn-help" data-placement="bottom" title="Ayuda">
                     <i class="zmdi zmdi-help-outline zmdi-hc-fw"></i>

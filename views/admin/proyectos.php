@@ -9,7 +9,7 @@ require_once 'views/templates/header.php';
   </div>
   <div class="card-body">
     <h5 class="card-title"><?=$titulo?></h5>
-     <form action="">
+     <form action="" method="GET">
         <div class="row">
         <div class="form-group col-md-6">
           <label for="">Seleccione la convocatoria</label>

@@ -34,7 +34,7 @@ class LoginController extends Controller{
                 echo("No existe en el sistema");
             }
        }else{
-           echo("<p>pero del guetto</p>");
+           echo("<p>F</p>");
            header("locaction: ". URL. "index");
        }
 
@@ -43,6 +43,11 @@ class LoginController extends Controller{
 
     public function actionHome(){
         $convocatorias = $this->obtenerConvocatorias();
+        foreach($convocatorias as $c){
+            $semestre = $this->obtenerSemestre($c->getSemestre());
+            $sem = $semestre->getAnio()."-".$semestre->getPeriodo();
+            $c->setSemestre($sem);
+        }
         $datos = ['titulo' => 'inicio','listaConvo'=>$convocatorias];
         $this->view('home',$datos);
     }
@@ -58,6 +63,13 @@ class LoginController extends Controller{
         $convocatoria = new ConvocatoriaModel();
         return $convocatoria->obtenerTodos();
     }
+
+    public function obtenerSemestre($id = null){
+        require_once 'models/semestremodel.php';
+        $semestreModel = new SemestreModel();
+        return $semestreModel->buscarPorId($id);
+    }
+
 
 }
 
