@@ -36,12 +36,12 @@
        </p>
        <h4 class="text-center all-tittles" style="margin-bottom: -2px;">Introduce tus datos para registrarte</h4>
        <center><h5>Para visualizar los campos de registro de estudiante, presiona en el campo estudiante, para esconderlos presiona nuevamente</h5></center>
-       <form action="<?=URL?>registro/impri" method="post">
+       <form action="<?=URL?>registro/insertar" method="post">
         <p>
             <div class="row">
                 <div class="col">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="tipo" id="exampleRadios1" value="profesor" checked><br>
+                        <input class="form-check-input" type="radio" name="tipo" id="exampleRadios1" value="profesor" ><br>
                         <label class="form-check-label" for="exampleRadios1">
                           Docente
                         </label>
@@ -109,7 +109,7 @@
                 </div><br>
                 <div class="collapse" id="estudiante">
                     <div class="group-material-login">
-                        <input type="text" class="material-login-control" required="" maxlength="70" name="carrera">
+                        <input type="text" class="material-login-control"  maxlength="70" name="carrera">
                         <span class="highlight-login"></span>
                         <span class="bar-login"></span>
                         <label><i class="zmdi zmdi-account"></i> &nbsp; Codigo de carrera</label>

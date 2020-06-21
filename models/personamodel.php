@@ -20,17 +20,18 @@ Class PersonaModel extends Model {
         //Preparo la inserción de datos
         $query = $this->db->conexion()->prepare('INSERT INTO persona(documento,nombres,apellido1,apellido2,correo_electronico,fecha_nacimiento,celular,tipo_documento_idtipo_documento,contraseña) 
         
-        VALUES(:docu,:nom,:ape1,:ape2,:email,:fecha,:tipo,:contra)');
+        VALUES(:docu,:nom,:ape1,:ape2,:email,:fecha,:celular,:tipo,:contra)');
 
         try {
             //Ejecuto la query
             $query->execute([
                 'docu' => $persona->getDocumento(),
-                'nom'  => $persona->getNombre(),
+                'nom'  => $persona->getNombres(),
                 'ape1' => $persona->getApellido1(),
                 'ape2' => $persona->getApellido2(),
                 'email'=> $persona->getCorreoElectronico(),
                 'fecha'=> $persona->getFechaNaciento(),
+                'celular'=>$persona->getCelular(),
                 'tipo' => $persona->getTipoDocumento(),
                 'contra' => $persona->getContrasena()
             ]);

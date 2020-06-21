@@ -11,8 +11,9 @@ class RegistroController extends Controller{
     private $profesorModel;
     private $estudianteModel;
     public function __construct(){
-        parent:__construct();
+        //parent::__construct();
         $this->model("persona");
+        $this->personaModel = new PersonaModel();
         $this->profesorModel = new ProfesorModel();
         $this->estudianteModel = new EstudianteModel();
     }
@@ -35,19 +36,23 @@ class RegistroController extends Controller{
                     $contrasena = $_POST['contra'];
                     $tipoDocumento = $_POST['tipo_documento'];
                     $tipo = $_POST['tipo'];
-                    $persona = new Persona($documento,$nombres,$apellido1,null,$correo,$fecha,0000,$tipoDocumento,$contrasena);
+                    echo ($tipo);
+                    $persona = new Persona($documento,$nombres,$apellido1,"",$correo,$fecha,0000,$tipoDocumento,$contrasena);
                     if($this->personaModel->insertar($persona)){
                         if($tipo="profesor"){
                              require_once 'entities/Profesor.php';
                              $codigo = $_POST['codigo'];
                              $profesor = new Profesor($codigo,$documento);
                              $this->profesorModel->insertar($profesor);
-                        }else{
+                             $this->view('index',[]);
+                        }
+                        if($tipo="estudiante"){
                             require_once 'entities/Estudiante.php';
                             $codigo = $_POST['codigo'];
-                            $carrera = 115;
+                            $carrera = $_POST['carrera'];
                             $estudiante = new Estudiante($documento,$codigo,$carrera);
                             $this->estudianteModel->insertar($estudiante);
+                            $this->view('index',[]);
                         }
                     }else{
                           echo("<p>No se pudo insertar chamo</p>");
