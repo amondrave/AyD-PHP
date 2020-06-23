@@ -6,6 +6,11 @@ class TipoProyecto{
  private $nombre;
 
 
+    public function __construct($idTipoProyecto = null , $nombre = null){
+		$this->idTipoProyecto = $idTipoProyecto;
+		$this->nombre = $nombre;
+	}
+
  	public function getIdTipoProyecto(){
 		return $this->idTipoProyecto;
 	}

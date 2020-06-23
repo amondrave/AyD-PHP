@@ -6,6 +6,12 @@ class EstadoProyecto {
   private $nombre;
   private $descripcion;
 
+    public function __construct($idEstadoProyecto = null , $nombre = null, $descripcion = null){
+		$this->idEstadoProyecto = $idEstadoProyecto;
+		$this->nombre = $nombre;
+		$this->descripcion = $descripcion;
+	}
+
   	public function getIdEstadoProyecto(){
 		return $this->idEstadoProyecto;
 	}
