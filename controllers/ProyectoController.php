@@ -13,6 +13,10 @@ class ProyectoController extends Controller{
 
     }
 
+    public function actionIndex(){
+        $datos = [];
+        $this->view();
+    }
 
     public function actionProyectos(){
 
