@@ -26,21 +26,21 @@
            <i class="zmdi zmdi-account-circle zmdi-hc-5x"></i>
        </p>
        <h4 class="text-center all-tittles" style="margin-bottom: 30px;">ingresa tus datos para iniciar sesión</h4>
-       <form>
+       <form action="<?=URL?>estudiante/login" method="POST">
             <div class="group-material-login">
-              <input type="text" class="material-login-control" required="" maxlength="70">
+              <input type="text" class="material-login-control" required="" maxlength="70" name="codigo">
               <span class="highlight-login"></span>
               <span class="bar-login"></span>
               <label><i class="zmdi zmdi-account"></i> &nbsp; Codigo</label>
             </div><br>
             <div class="group-material-login">
-              <input type="text" class="material-login-control" required="" maxlength="70">
+              <input type="text" class="material-login-control" required="" maxlength="70" name="documento">
               <span class="highlight-login"></span>
               <span class="bar-login"></span>
               <label><i class="zmdi zmdi-account"></i> &nbsp; Documento</label>
             </div><br>
             <div class="group-material-login">
-              <input type="password" class="material-login-control" required="" maxlength="70">
+              <input type="password" class="material-login-control" required="" maxlength="70" name="contrasena">
               <span class="highlight-login"></span>
               <span class="bar-login"></span>
               <label><i class="zmdi zmdi-lock"></i> &nbsp; Contraseña</label>

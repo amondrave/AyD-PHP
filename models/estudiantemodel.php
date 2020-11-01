@@ -110,6 +110,25 @@ class EstudianteModel extends Model{
         }
     }
 
+    public function existe($codigo){
+        $existe = false;
+        $query = $this->db->conexion()->prepare('SELECT * FROM estudiante WHERE codigo_estudiante = :codigo');
+        try{
+            $query->execute([
+                'codigo' => $codigo
+            ]);
+            while($row = $query->fetch()){
+                $this->estudiante->setDocumento($row['persona_documento']);
+                $this->estudiante->setCodigoEstudiante($row['codigo_estudiante']);
+                $this->estudiante->setCodigoCarrera($row['carrera_codigo_carrera']);
+            }
+            $existe = true;
+        }catch(PDOException $e){
+            return false;
+        }  
+        return $existe;
+    }
+
 }
 
 
