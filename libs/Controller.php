@@ -11,7 +11,7 @@ class Controller
 
     public function view($view, $data = [])
     {
-        //session_start();
+        session_start();
 
         if (isset($_SESSION['user'])) {
 
@@ -35,7 +35,6 @@ class Controller
                 foreach($data as $key => $value){
                     $$key = $value;
                 }
-                echo "<p>hola</p>";
                 require_once 'views/estudiante/'. $view . '.php';
             }else{
                 require_once 'views/admin/home.php';

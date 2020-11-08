@@ -1,73 +1,205 @@
-/** @format */
-
-* {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
 }
 
-a {
-	text-decoration: none;
-	color: black;
+body{
+    font-family: 'Open Sans', sans-serif;
 }
 
-.contenedor-menu {
-	width: 100%;
-	min-width: 200px;
-	display: inline-block;
+a{
+    text-decoration: none;
+    color: black;
 }
 
-.contenedor-menu .menu {
-	width: 100%;
+.contenedor{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 90px auto;
+    grid-template-rows: 60px auto;
+    grid-template-areas: "header header"
+                        "menu contenido";
+    transition: all .3s ease;
 }
 
-.contenedor-menu ul {
-	list-style: none;
+.contenedor.active{
+    grid-template-columns: 300px auto;
 }
 
-.contenedor-menu .menu li a {
-	background: #fff;
-	color: black;
-	display: block;
-	padding: 5px 10px;
+.header{
+    grid-area: header;
+    background: #dd4b39;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 20px;
+    grid-template-areas: "logo vacio iconos";
 }
 
-.contenedor-menu .menu li a:hover {
-	background: #dd4b39;
-	color: #fff;
+.header .contenedor-logo{
+    grid-area: logo;
+    display: flex;
+    align-items: center;
 }
 
-.contenedor-menu .menu .icono {
-	font-size: 12px;
+.header .contenedor-logo .boton-menu{
+    border: none;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    color: #fff;
 }
 
-.contenedor-menu .menu .icono.izquierda {
-	float: left;
-	margin-right: 10px;
+.header .contenedor-logo .boton-menu:hover{
+    background: #a8a4a4;
 }
 
-.contenedor-menu .menu .icono.derecha {
-	float: right;
-	margin-left: 10px;
+.header .contenedor-logo .logo .fas{
+    background: none;
+    font-size: 18px;
+    color: #fff;
+    margin-right: 6px;
 }
 
-.contenedor-menu .menu ul {
-	display: none;
+.header .contenedor-logo .logo{
+    font-family: 'Bebas Neue', cursive;
+    background: none;
+    font-size: 20px;
+    color: #fff;
 }
 
-.contenedor-menu .menu ul li a {
-	background: rgb(163, 162, 162);
-	color: #fff;
+.header .contenedor-logo .logo:hover{
+    text-decoration: none;
 }
 
-.contenedor-menu .menu .activado > a {
-	background: #dd4b39;
-	color: #fff;
+.header .barra-nada{
+    grid-area: nada;
 }
 
-.contenedor-menu .menu ul li .loguito {
-	float: left;
-	margin-right: 10px;
+.header .botones-header{
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+}
+
+.header .botones-header button{
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius: 100px;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header .botones-header button:hover{
+    background: #a8a4a4;
+}
+
+.header .botones-header span{
+    font-family: 'Bebas Neue', cursive;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.header .botones-header .avatar{
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+}
+
+.header .botones-header .avatar img{
+    vertical-align: top;
+    width: 100%;
+    border-radius: 100px;
+}
+
+.menu-lateral{
+    grid-area: menu;
+    background: #fff;
+    overflow: hidden;
+}
+
+.menu-lateral a{
+    display: block;
+    padding: 15px 35px;
+    color: #000;
+    min-width: 800px;
+}
+
+.menu-lateral a:hover{
+    text-decoration: none;
+    background: #e5e5e5;
+}
+
+.menu-lateral a:hover .fas{
+    color: #dd4b39;
+}
+
+.menu-lateral a.active{
+    text-decoration: none;
+    background: #e5e5e5;
+    font-weight: bold;
+}
+
+.menu-lateral .fas{
+    margin-right: 35px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-lateral a.active .fas{
+    color: #dd4b39;
+}
+
+.menu-lateral hr{
+    margin: 20px 0;
+    border: 1px solid #dfdfdf;
+}
+
+.main{
+    grid-area: contenido;
+    background: #e5e5e5;
+    padding: 40px;
+}
+
+.main .titulo{
+    margin-bottom: 10px;
+}
+
+.main .bonito button{
+    background: #dd4b39;
+}
+
+.main .bonito button:hover{
+    background: #8d3327;
+}
+
+.main .bonitodos button{
+    background: #dd4b39;
+}
+
+.main .bonitodos button:hover{
+    background: #8d3327;
+}
+
+.main div div button{
+    background: #dd4b39;
+}
+
+.main div div button:hover{
+    background: #8d3327;
 }

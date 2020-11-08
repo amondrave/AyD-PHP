@@ -1,46 +1,48 @@
 <?php
-require_once 'views/templates/header.php';
+require_once 'views/templates/menu.php';
 ?>
 
 <div class="container">
-    <div class="page-header">
-     <h1 class="all-tittles">convocatorias activas <small>encuentros de semilleros</small></h1>
-    </div>
+  <div class="page-header">
+    <h1 class="titulo">convocatorias creadas <small>encuentros de semilleros</small></h1>
+  </div>
 
-<!--Tabla de la convocatoria-->
+  <!--Tabla de la convocatoria-->
 
-<div class="table-responsive">
-<table class="table  text-center table-bordered">
-  <thead class="text-primary">
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">nombre</th>
-      <th scope="col">fecha inicio</th>
-      <th scope="col">semestre</th>
-      <th scope="col">descripcion</th>
-    </tr>
-  </thead>
-  <tbody>
-     <?php
-      foreach($listaConvo as $convocatoria){
-     ?>
-        <tr>
-             <th><?=$convocatoria->getIdConvocatoria()?></th>
-             <th><?=$convocatoria->getNombre()?></th>
-             <th><?=$convocatoria->getFechaInicio()?></th>
-             <th><?=$convocatoria->getSemestre()?></th>
-             <th><?=$convocatoria->getDescripcion()?></th> 
+  <div>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-danger">
+          <th scope="col">id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Semestre</th>
+          <th scope="col">Fecha de inicio</th>
+          <th scope="col">Fecha de Cierre</th>
+          <th scope="col">Estado</th>
         </tr>
-     <?php
-      }
-     ?>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($listaConvo as $convocatoria) {
+        ?>
+          <tr class="table-secondary">
+            <th><?= $convocatoria->getIdConvocatoria() ?></th>
+            <th><?= $convocatoria->getNombre() ?></th>
+            <th><?= $convocatoria->getSemestre() ?></th>
+            <th><?= $convocatoria->getFechaInicio() ?></th>
+            <th><?= $convocatoria->getFechaCierre() ?></th>
+            <th><?= $convocatoria->getHabilitadas() ?></th>
+          </tr>
+        <?php
+        }
+        ?>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Cierre de la tabla-->
 </div>
 
-<!--Cierre de la tabla-->
-</div>
-<a href="<?=URL?>login/cerrar">Salir</a>
 
 
 <?php

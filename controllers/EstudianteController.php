@@ -30,8 +30,8 @@ class EstudianteController extends Controller{
             if($this->estudianteController->existe($codigoAlumno)){
                 $personaModel = new PersonaModel();
                 if($personaModel->existe($documento,$contrasena)){
-                    $_SESSION['estudiante'] = $codigoAlumno;
-                     $this->actionHome();
+                    $_SESSION['estudiante'] = $documento;
+                    header("locaction: ". URL. "estudiante/home");
                 }else{
                     echo "<p>Datos equivocados</p>";
                     header("locaction: ". URL. "index");
