@@ -1,12 +1,13 @@
 <?php
 require_once 'views/templates/estudiante/header.php';
 ?>
-<p>
-Hola bienvenido <?php $titulo?>
-</p>
+<main class="main">
+    <h2 class="titulo">Convocatorias activas</h2>
+    <p>Revisa las convocatorias que estan activas para que registres tus proyectos</p>
+</main>
 
-<a href="<?=URL?>estudiante/cerrar">Cerrar sesión</a>
+
 
 <?php
- require_once 'views/templates/footer.php';
+require_once 'views/templates/footer.php';
 ?>

@@ -31,7 +31,7 @@
         <nav class="menu-lateral">
             <a href="<?= URL ?>login/home"><i class="fas fa-home"></i>Inicio</a>
             <hr>
-            <a href="<?= URL ?>convocatoria/index"><i class="fas fa-folder-open"></i>Gestionar Convocatorias</a>
+            <a href="<?= URL ?>convocatoria/gestion"><i class="fas fa-folder-open"></i>Gestionar Convocatorias</a>
             <a href="<?= URL ?>convocatoria/habilitar"><i class="fas fa-edit"></i>Habilitar Formulario</a>
             <a href="generarReportes.html"><i class="fas fa-file-download"></i>Generar Reportes</a>
             <a href="generarCriterios.html"><i class="fas fa-clipboard-list"></i>Asignar Criterios</a>

@@ -23,10 +23,10 @@ class ConvocatoriaModel extends Model
                 'fechaIni' => $convocatoria->getFechaInicio(),
                 'fecha' => $convocatoria->getFechaInicio(),
                 'nombre' => $convocatoria->getNombre(),
-                'descr' => null,
+                'descr' => $convocatoria->getDescripcion(),
                 'fechaCie' => $convocatoria->getFechaCierre(),
                 'semestre' => $convocatoria->getSemestre(),
-                'habilitadas' => 'N'
+                'habilitadas' => $convocatoria->getHabilitadas()
             ]);
             return true;
         } catch (PDOException $e) {
@@ -43,7 +43,9 @@ class ConvocatoriaModel extends Model
     {
         $query = $this->db->conexion()->prepare('DELETE FROM convocatoria WHERE idConvocatoria = :id');
         try {
-            $query->execute($id);
+            $query->execute([
+                'id' => $id
+            ]);
             return true;
         } catch (PDOException $e) {
             return false;
