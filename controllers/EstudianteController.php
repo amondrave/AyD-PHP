@@ -3,7 +3,8 @@
 require_once 'models/personamodel.php';
 require_once 'models/estudiantemodel.php';
 require_once 'models/convocatoriamodel.php';
-
+require_once 'models/proyectomodel.php';
+require_once 'entities/Proyecto.php';
 
 class EstudianteController extends Controller
 {
@@ -109,20 +110,56 @@ class EstudianteController extends Controller
         return $estado;
     }
 
+    public function obtenterSemillero()
+    {
+        require_once 'models/semilleromodel.php';
+        $semillero = new SemilleroModel();
+        return $semillero->obtenerTodos();
+    }
+
     public function actionRegistro()
     {
         $convocatoria = $this->obtenerConvoncatoriasActivas();
         $estado = $this->obtenerEstadoProyecto();
         $tipo = $this->obtenerTipoProyecto();
+        $semillero = $this->obtenterSemillero();
         $datos = [
             'convocatoria' => $convocatoria,
             'estado' => $estado,
-            'tipo' => $tipo
+            'tipo' => $tipo,
+            'semillero' => $semillero
         ];
         $this->view('registrar', $datos);
     }
 
     public function actionCrear()
     {
+        if (isset($_POST['codigo'], $_POST['nombre'], $_POST['documento'], $_POST['convocatoria'], $_POST['tipo'], $_POST['estado'], $_POST['semillero'], $_POST['fecha'])) {
+            $codigo = $_POST['codigo'];
+            $nombre = $_POST['nombre'];
+            $documento = $_POST['documento'];
+            $convocatoria = $_POST['convocatoria'];
+            $tipo = $_POST['tipo'];
+            $estado = $_POST['estado'];
+            $semillero = $_POST['semillero'];
+            $fecha = $_POST['fecha'];
+            $proyecto = new Proyecto();
+            $proyecto->setIdProyecto($codigo);
+            $proyecto->setNombre($nombre);
+            $proyecto->setConvocatoria($convocatoria);
+            $proyecto->setTipoproyecto($tipo);
+            $proyecto->setEstado($estado);
+            $proyecto->setSemillero($semillero);
+            $proyecto->setFecha($fecha);
+            $proyecto->setNotaFinal(0, 0);
+            $proyectoModel = new ProyectoModel();
+            if ($proyectoModel->insertar($proyecto)) {
+                $this->actionHome();
+            } else {
+                echo "ERROR al insertar";
+            }
+        } else {
+            echo "ERROR con el formulario";
+        }
     }
 }
