@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pagina principal</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= URL ?>public/css/estilos.css">
 </head>
 
@@ -31,7 +32,7 @@
             <a href="<?= URL ?>estudiante/home" class="active"><i class="fas fa-home"></i>Inicio</a>
             <hr>
             <a href="#"><i class="fas fa-folder-open"></i>Proyectos</a>
-            <a href="#"><i class="fas fa-edit"></i>Registro de Proyectos</a>
+            <a href="<?= URL ?>estudiante/registro"><i class="fas fa-edit"></i>Registro de Proyectos</a>
             <a href="#"><i class="fas fa-search"></i>Busqueda de Proyectos</a>
             <hr>
         </nav>

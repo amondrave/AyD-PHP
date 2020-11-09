@@ -20,6 +20,7 @@ class ProfesorModel extends Model{
                 'codigo' => $profesor->getCodigo(),
                 'documento' => $profesor->getDocumento()
             ]);
+            return true;
         } catch (PDOException $e) {
             print_r('Error de base de datos',$e);
             return false;
@@ -60,6 +61,3 @@ class ProfesorModel extends Model{
     }
 
 }
-
-
-?>

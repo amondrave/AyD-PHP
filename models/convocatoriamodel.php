@@ -133,4 +133,24 @@ class ConvocatoriaModel extends Model
             return false;
         }
     }
+
+    public function obtenerActivas()
+    {
+        $convocatorias = [];
+        try {
+            $query = $this->db->conexion()->query('SELECT * FROM convocatoria WHERE habilitadas = "A" ');
+            while ($row = $query->fetch()) {
+                $con = new Convocatoria();
+                $con->setIdConvocatoria($row['idconvocatoria']);
+                $con->setNombre($row['nombre_convocatoria']);
+                $con->setDescripcion($row['descripcion']);
+                $con->setSemestre($row['semestre']);
+                $con->setFechaCierre($row['fecha_cierre']);
+                array_push($convocatorias, $con);
+            }
+            return $convocatorias;
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
 }

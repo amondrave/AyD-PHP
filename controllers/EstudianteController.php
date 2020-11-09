@@ -4,6 +4,7 @@ require_once 'models/personamodel.php';
 require_once 'models/estudiantemodel.php';
 require_once 'models/convocatoriamodel.php';
 
+
 class EstudianteController extends Controller
 {
     private $estudianteController;
@@ -62,7 +63,11 @@ class EstudianteController extends Controller
 
     public function actionHome()
     {
-        $datos = ['tituo' => 'alumno'];
+        $convocatoria = $this->obtenerConvoncatoriasActivas();
+        $datos = [
+            'tituo' => 'alumno',
+            'convocatoria' => $convocatoria
+        ];
         $this->view('inicio', $datos);
     }
 
@@ -72,5 +77,52 @@ class EstudianteController extends Controller
         session_unset();
         session_destroy();
         header('location: ' . URL . 'index');
+    }
+
+    public function obtenerConvoncatoriasActivas()
+    {
+        $convocatoriaModel = new ConvocatoriaModel();
+        $convocatorias = $convocatoriaModel->obtenerActivas();
+        require_once 'controllers/LoginController.php';
+        $login = new LoginController();
+        foreach ($convocatorias as $c) {
+            $semestre = $login->obtenerSemestre($c->getSemestre());
+            $sem = $semestre->getAnio() . "-" . $semestre->getPeriodo();
+            $c->setSemestre($sem);
+        }
+        return $convocatorias;
+    }
+
+    public function obtenerTipoProyecto()
+    {
+        require_once 'models/tiproyectomodel.php';
+        $tipoProyectoModel = new TipoProyectoModel();
+        $tipoProyecto = $tipoProyectoModel->obtenerTodos();
+        return $tipoProyecto;
+    }
+
+    public function obtenerEstadoProyecto()
+    {
+        require_once 'models/estadoproyectomodel.php';
+        $estadoModel = new EstadoProyectoModel();
+        $estado = $estadoModel->obtenerTodos();
+        return $estado;
+    }
+
+    public function actionRegistro()
+    {
+        $convocatoria = $this->obtenerConvoncatoriasActivas();
+        $estado = $this->obtenerEstadoProyecto();
+        $tipo = $this->obtenerTipoProyecto();
+        $datos = [
+            'convocatoria' => $convocatoria,
+            'estado' => $estado,
+            'tipo' => $tipo
+        ];
+        $this->view('registrar', $datos);
+    }
+
+    public function actionCrear()
+    {
     }
 }

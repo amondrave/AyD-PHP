@@ -19,6 +19,7 @@ class TipoProyectoModel extends Model{
                 $tipo->setNombre($row['nombre']);
                 array_push($tipos, $tipo);
             }
+            return $tipos;
         } catch (PDOException $e){
             print_r('ERROR EN LA BASE DE DATOS', $e);
             return null;
@@ -29,6 +30,3 @@ class TipoProyectoModel extends Model{
 
 
 }
-
-
-?>

@@ -103,7 +103,14 @@ class ConvocatoriaController extends Controller
 
     public function actionGestion()
     {
+        require_once 'controllers/LoginController.php';
+        $loginController = new LoginController();
         $convocatoria = $this->obtenerConvocatorias();
+        foreach ($convocatoria as $c) {
+            $semestre = $loginController->obtenerSemestre($c->getSemestre());
+            $sem = $semestre->getAnio() . "-" . $semestre->getPeriodo();
+            $c->setSemestre($sem);
+        }
         $datos = ['titulo' => "crear convocatoria", 'convocatoria' => $convocatoria];
         $this->view('gestion', $datos);
     }
