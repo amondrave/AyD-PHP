@@ -15,7 +15,7 @@ class ProyectoController extends Controller{
 
     public function actionIndex(){
         $datos = [];
-        $this->view();
+       // $this->view();
     }
 
     public function actionProyectos(){
@@ -25,7 +25,3 @@ class ProyectoController extends Controller{
 
 
 }
-
-
-
-?>

@@ -49,8 +49,3 @@ class EstadoProyectoModel extends Model{
 
 
 }
-
-
-
-
-?>

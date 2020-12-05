@@ -34,6 +34,6 @@
             <a href="<?= URL ?>convocatoria/gestion"><i class="fas fa-folder-open"></i>Gestionar Convocatorias</a>
             <a href="<?= URL ?>convocatoria/habilitar"><i class="fas fa-edit"></i>Habilitar Formulario</a>
             <a href="generarReportes.html"><i class="fas fa-file-download"></i>Generar Reportes</a>
-            <a href="generarCriterios.html"><i class="fas fa-clipboard-list"></i>Asignar Criterios</a>
+            <a href="<?= URL ?>convocatoria/docente"><i class="fas fa-chalkboard-teacher"></i>Asignar Docente</a>
             <hr>
         </nav>

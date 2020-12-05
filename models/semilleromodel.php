@@ -36,7 +36,7 @@ class SemilleroModel extends Model
                 'id' => $id
             ]);
             while ($row = $query->fetch()) {
-                $this->semillero->setIdSemillero($row['idSemillero']);
+                $this->semillero->setIdSemillero($row['idsemillero']);
                 $this->semillero->setNombre($row['nombre']);
                 $this->semillero->setCarrera($row['carrera_codigo_carrera']);
             }

@@ -56,14 +56,16 @@ class ConvocatoriaModel extends Model
     public function buscar($id)
     {
         $convocatoria = new Convocatoria();
-        $query = $this->db->conexion()->prepare('SELECT * FROM convocatroia WHERE idConvocatoria = :id');
+        $query = $this->db->conexion()->prepare('SELECT * FROM convocatoria WHERE idConvocatoria = :id');
         try {
-            $query->execute($id);
+            $query->execute([
+                'id' => $id
+            ]);
             while ($row = $query->fetch()) {
-                $convocatoria->setIdConvocatoria($row['idConvocatoria']);
+                $convocatoria->setIdConvocatoria($row['idconvocatoria']);
                 $convocatoria->setFechaInicio($row['fecha_inicio']);
                 $convocatoria->setFechaCreacion($row['fecha_creacion']);
-                $convocatoria->setNombre($row['nombre']);
+                $convocatoria->setNombre($row['nombre_convocatoria']);
                 $convocatoria->setDescripcion($row['descripcion']);
                 $convocatoria->setFechaCierre($row['fecha_cierre']);
                 $convocatoria->setSemestre($row['semestre']);

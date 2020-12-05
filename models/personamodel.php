@@ -64,7 +64,7 @@ Class PersonaModel extends Model {
                 $persona ->setCelular($row['celular']);
                 $persona ->setTipoDocumento($row['tipo_documento_idtipo_documento']);
              }
-             if($persona->getDocumento != null){
+             if($persona->getDocumento() != null){
                  return $persona;
              }else{
                  return null;
@@ -96,6 +96,3 @@ Class PersonaModel extends Model {
     
 
 }
-
-
-?>

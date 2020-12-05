@@ -16,7 +16,7 @@
         <header class="header">
             <div class="contenedor-logo">
                 <button id="boton-menu" class="boton-menu"><i class="fas fa-bars"></i></button>
-                <a href="#" class="logo"><i class="fas fa-user-graduate"></i><span>ESTUDIANTE</span></a>
+                <a href="#" class="logo"><i class="fas fa-user-graduate"></i><span><?= $_SESSION['estudiante'] ?></span></a>
             </div>
 
             <div></div>
@@ -31,7 +31,7 @@
         <nav class="menu-lateral">
             <a href="<?= URL ?>estudiante/home" class="active"><i class="fas fa-home"></i>Inicio</a>
             <hr>
-            <a href="#"><i class="fas fa-folder-open"></i>Proyectos</a>
+            <a href="<?= URL ?>estudiante/proyectos/<?= $_SESSION['estudiante'] ?>"><i class="fas fa-folder-open"></i>Proyectos</a>
             <a href="<?= URL ?>estudiante/registro"><i class="fas fa-edit"></i>Registro de Proyectos</a>
             <a href="#"><i class="fas fa-search"></i>Busqueda de Proyectos</a>
             <hr>

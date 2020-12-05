@@ -134,4 +134,63 @@ class ConvocatoriaController extends Controller
             echo "ERROR";
         }
     }
+
+    public function actionDocente()
+    {
+        $profesores = $this->obtenenerNombres();
+        $proyectos = $this->obtenerProyectos();
+        $datos = [
+            'profesores' => $profesores,
+            'proyectos' => $proyectos
+        ];
+        $this->view('asignar', $datos);
+    }
+
+    public function actionAsignar()
+    {
+        require_once 'models/proyectoprofesormodel.php';
+        $proyectoProfesorModel = new ProyectoProfesorModel();
+        $profesor = $_GET['profesor'];
+        $proyecto = $_GET['proyecto'];
+        if ($profesor != null && $proyecto != null) {
+            if ($proyectoProfesorModel->insertar($profesor, $proyecto)) {
+                echo "<script>
+                       alert('Se ha asignado correctamente');
+                      </script>";
+                $this->actionDocente();
+            } else {
+                echo "<script>
+                       alert('Lo siento ha ocurrido un error');
+                      </script>";
+                $this->actionDocente();
+            }
+        } else {
+            $dataError = [
+                'titulo' => 'Error',
+                'mensaje' => 'Lo sentimos ha ocurrido un error'
+            ];
+            $this->view('error', $dataError);
+        }
+    }
+    public function obtenenerNombres()
+    {
+        require_once 'models/profesormodel.php';
+        require_once 'models/personamodel.php';
+        $profesorModel = new ProfesorModel();
+        $profesores = $profesorModel->obtenerTodos();
+        $personaModel = new PersonaModel();
+        $personas = [];
+        foreach ($profesores as $p) {
+            $persona = $personaModel->buscar($p->getDocumento());
+            array_push($personas, $persona);
+        }
+        return $personas;
+    }
+
+    public function obtenerProyectos()
+    {
+        require_once 'models/proyectomodel.php';
+        $proyectoModel = new ProyectoModel();
+        return $proyectoModel->obtenerTodos();
+    }
 }

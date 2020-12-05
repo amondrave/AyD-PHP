@@ -4,11 +4,13 @@ require_once 'models/personamodel.php';
 require_once 'models/estudiantemodel.php';
 require_once 'models/convocatoriamodel.php';
 require_once 'models/proyectomodel.php';
+require_once 'models/estudianteproyectomodel.php';
 require_once 'entities/Proyecto.php';
 
 class EstudianteController extends Controller
 {
     private $estudianteController;
+    private $sesion;
 
     public function __construct()
     {
@@ -37,6 +39,7 @@ class EstudianteController extends Controller
                 $personaModel = new PersonaModel();
                 if ($personaModel->existe($documento, $contrasena)) {
                     $_SESSION['estudiante'] = $documento;
+
                     echo "<script>
                             window.location='" . URL . "estudiante/home';
                          </script>";
@@ -154,6 +157,8 @@ class EstudianteController extends Controller
             $proyecto->setNotaFinal(0, 0);
             $proyectoModel = new ProyectoModel();
             if ($proyectoModel->insertar($proyecto)) {
+                $estudianteProyectoModel = new EstudianteProyectoModel();
+                $estudianteProyectoModel->insertar($codigo, $documento);
                 $this->actionHome();
             } else {
                 echo "ERROR al insertar";
@@ -161,5 +166,53 @@ class EstudianteController extends Controller
         } else {
             echo "ERROR con el formulario";
         }
+    }
+
+    public function actionProyectos($sesion)
+    {
+        require_once 'models/estudianteproyectomodel.php';
+        $proyectoAlumno = new EstudianteProyectoModel();
+        $proyectoModel = new ProyectoModel();
+        $proyectos = [];
+        //session_start();
+        $id = implode($sesion);
+        // Recuperamos el valor que se almacena en nuestra sesión activa
+        $documento = $id;
+        $codigosProyectos = $proyectoAlumno->obtenerProyecto($documento);
+        foreach ($codigosProyectos as $c) {
+            $tmp = $proyectoModel->buscar($c);
+            array_push($proyectos, $tmp);
+        }
+        foreach ($proyectos as $p) {
+            $semi = $this->obtenerSemillero($p->getSemillero());
+            $convo = $this->obtenerConvocatoria($p->getConvocatoria());
+            $est = $this->obtenerEstado($p->getEstado());
+            $p->setSemillero($semi);
+            $p->setConvocatoria($convo);
+            $p->setEstado($est);
+        }
+        $datos = ['proyectos' => $proyectos];
+        $this->view('proyectos', $datos);
+    }
+
+    public function obtenerConvocatoria($id)
+    {
+        $convocatoriaModel = new ConvocatoriaModel();
+        $convocatoria = $convocatoriaModel->buscar($id);
+        return $convocatoria->getNombre();
+    }
+    public function obtenerSemillero($id)
+    {
+        require_once 'models/semilleromodel.php';
+        $semilleroModel = new SemilleroModel();
+        $semillero = $semilleroModel->obtener($id);
+        return $semillero->getNombre();
+    }
+    public function obtenerEstado($id)
+    {
+        require_once 'models/estadoproyectomodel.php';
+        $estadoModel = new EstadoProyectoModel();
+        $estado = $estadoModel->buscar($id);
+        return $estado->getNombre();
     }
 }
